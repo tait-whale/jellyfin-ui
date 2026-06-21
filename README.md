@@ -9,16 +9,16 @@ External Jellyfin CSS theme built around Abyss, Intro Skipper styling, a polishe
 3. Paste this:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/tait-whale/jellyfin-ui@main/jellyfin-theme.css?v=2026-06-21");
+@import url("https://cdn.jsdelivr.net/gh/tait-whale/jellyfin-ui@main/jellyfin-theme.css?v=2026-06-21-2");
 ```
 
 When you edit `jellyfin-theme.css`, bump the `v=` value so phones, TVs, and browsers do not keep an old cached copy.
 
 ## What CSS Can And Cannot Do
 
-This theme can style the header, poster cards, dialogs, buttons, home rows, and the Media Bar plugin area. It also makes Jellyfin's search icon look like a search bar in the top row.
+This theme can style the header, poster cards, dialogs, buttons, home rows, and the Media Bar plugin area. It also makes Jellyfin's search icon look like a search bar and moves it beside the centered tabs on desktop.
 
-CSS cannot create new Jellyfin home rows, reorder libraries, or add real Jellyseerr/Overseerr discovery data by itself. For the home screen you described, configure Jellyfin and plugins so the rows exist first, then this theme will style them.
+CSS cannot fetch Jellyseerr/Overseerr data, create real discovery rows, or reorder libraries by itself. Configure Jellyfin and your Seerr/Jellyfin Enhanced integration so the row exists first, then this theme will style common `jellyseerr`, `overseerr`, and `seerr` row hooks.
 
 Recommended layout:
 
