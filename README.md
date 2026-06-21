@@ -1,6 +1,6 @@
 # Jellyfin UI Theme
 
-External Jellyfin CSS theme with Abyss, Jellyfin Enhanced, and Intro Skipper styling vendored into one file, plus a polished home hero/media bar, tighter poster rows, and a cleaner top navigation/search pill.
+External Jellyfin CSS theme served from GitHub Pages. It uses ElegantFin as the base theme, adds ElegantFin's Media Bar plugin support, then layers on a centered tabs/search bar, compact Media Bar sizing, readable home cards, and optional Seerr discovery rows.
 
 ## Use It In Jellyfin
 
@@ -12,15 +12,19 @@ External Jellyfin CSS theme with Abyss, Jellyfin Enhanced, and Intro Skipper sty
 @import url("https://tait-whale.github.io/jellyfin-ui/jellyfin-theme.css");
 ```
 
-This replaces the previous jsDelivr `@main` URL, which can serve stale branch files. GitHub Pages serves the pushed stylesheet from this repository with `text/css`.
+This URL stays the same after updates. GitHub Pages serves the pushed stylesheet from this repository with `text/css`, so Jellyfin does not need a new dashboard import every time the theme changes.
 
-The theme file is intentionally bundled. Jellyfin only imports `jellyfin-theme.css`; Abyss and Intro Skipper CSS are copied into that file so they cannot drift or load in a conflicting order.
+The theme file imports:
+
+- [ElegantFin](https://github.com/lscambo13/ElegantFin) by lscambo13 as the visual base.
+- ElegantFin's Media Bar plugin add-on.
+- Local overrides from this repo for Tait's navigation, home layout, cards, and Seerr rows.
 
 ## What CSS Can And Cannot Do
 
-This theme can style the header, poster cards, dialogs, buttons, home rows, and the Media Bar plugin area. It also makes Jellyfin's search icon look like a search bar and moves it beside the centered tabs on desktop.
+This theme can style the header, poster cards, dialogs, buttons, home rows, and the Media Bar plugin area. It also makes Jellyfin's search icon look like a search bar and moves it into the centered desktop nav capsule.
 
-CSS cannot fetch Jellyseerr/Overseerr data, create real discovery rows, or reorder libraries by itself. Configure Jellyfin and your Seerr/Jellyfin Enhanced integration so the row exists first, then this theme will style common `jellyseerr`, `overseerr`, and `seerr` row hooks.
+CSS cannot fetch Jellyseerr/Overseerr data, create real discovery rows, or reliably remove only named tabs like `Favorites` or `Watchlist`. Configure Jellyfin's navigation/home settings for the tabs you want, or use a JavaScript injector for behavior that needs real DOM changes.
 
 ## Optional Seerr Discovery Rows
 
