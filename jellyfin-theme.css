@@ -501,6 +501,106 @@ body {
     scroll-behavior: smooth !important;
 }
 
+.jf-seerr-section {
+    margin-bottom: var(--jf-row-gap) !important;
+}
+
+.jf-seerr-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+}
+
+.jf-seerr-heading {
+    margin-bottom: 0 !important;
+}
+
+.jf-seerr-scroller {
+    display: flex !important;
+    gap: clamp(0.75rem, 1.1vw, 1.15rem) !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0.15rem 0 0.7rem !important;
+}
+
+.jf-seerr-card {
+    flex: 0 0 clamp(8.8rem, 10vw, 12rem);
+    color: var(--jf-text) !important;
+    text-decoration: none !important;
+    transition:
+        transform 170ms ease,
+        filter 170ms ease !important;
+}
+
+.jf-seerr-card:hover,
+.jf-seerr-card:focus-visible {
+    transform: translateY(-0.28rem) scale(1.035);
+    filter: brightness(1.06) saturate(1.04);
+}
+
+.jf-seerr-poster {
+    aspect-ratio: 2 / 3;
+    border-radius: var(--jf-radius-card);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+        rgba(255, 255, 255, 0.06);
+    background-position: center;
+    background-size: cover;
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.42),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.jf-seerr-poster.is-empty::after {
+    content: "No poster";
+    display: grid;
+    min-height: 100%;
+    place-items: center;
+    color: var(--jf-muted);
+    font-weight: 750;
+}
+
+.jf-seerr-card-body {
+    padding-top: 0.55rem;
+}
+
+.jf-seerr-title {
+    overflow: hidden;
+    color: var(--jf-text);
+    font-size: 0.95rem;
+    font-weight: 750;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jf-seerr-meta {
+    margin-top: 0.2rem;
+    color: var(--jf-muted);
+    font-size: 0.82rem;
+}
+
+.jf-seerr-request {
+    display: inline-flex;
+    margin-top: 0.45rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--jf-radius-pill);
+    color: var(--jf-text);
+    background: rgba(255, 255, 255, 0.08);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.jf-seerr-message {
+    min-width: min(32rem, 90vw);
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    color: var(--jf-muted);
+    background: rgba(255, 255, 255, 0.05);
+}
+
 /* =========================================================
    Buttons / Menus / Dialogs
    ========================================================= */
