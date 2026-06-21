@@ -9,10 +9,10 @@ External Jellyfin CSS theme with Abyss, Jellyfin Enhanced, and Intro Skipper sty
 3. Paste this:
 
 ```css
-@import url("https://cdn.statically.io/gh/tait-whale/jellyfin-ui/main/jellyfin-theme.css");
+@import url("https://tait-whale.github.io/jellyfin-ui/jellyfin-theme.css");
 ```
 
-This replaces the previous jsDelivr `@main` URL, which can serve stale branch files. Statically is currently serving the pushed bundled stylesheet directly from `main` with `text/css`.
+This replaces the previous jsDelivr `@main` URL, which can serve stale branch files. GitHub Pages serves the pushed stylesheet from this repository with `text/css`.
 
 The theme file is intentionally bundled. Jellyfin only imports `jellyfin-theme.css`; Abyss and Intro Skipper CSS are copied into that file so they cannot drift or load in a conflicting order.
 
@@ -38,7 +38,7 @@ window.JF_SEERR_DISCOVERY_CONFIG = {
 
 (() => {
     const script = document.createElement("script");
-    script.src = "https://cdn.statically.io/gh/tait-whale/jellyfin-ui/main/jellyfin-seerr-discovery.js";
+    script.src = "https://tait-whale.github.io/jellyfin-ui/jellyfin-seerr-discovery.js";
     script.defer = true;
     document.head.appendChild(script);
 })();

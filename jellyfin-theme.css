@@ -3235,7 +3235,7 @@ body {
    ========================================================= */
 
 :root {
-    --jf-theme-build: "2026-06-21-fix-statically";
+    --jf-theme-build: "2026-06-21-github-pages";
     --jf-home-row-overlap: 0rem;
     --jf-hero-min-height: 340px;
     --jf-hero-height: min(56vh, 590px);

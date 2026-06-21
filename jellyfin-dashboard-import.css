@@ -2,8 +2,8 @@
    Paste one @import into Jellyfin:
    Dashboard > General > Custom CSS
 
-   Statically serves the current GitHub main branch with a stylesheet-safe
-   content type and shorter cache window than jsDelivr branch aliases.
+   Served from GitHub Pages so this URL stays stable and updates from the
+   repository without jsDelivr branch-cache lag.
 */
 
-@import url("https://cdn.statically.io/gh/tait-whale/jellyfin-ui/main/jellyfin-theme.css");
+@import url("https://tait-whale.github.io/jellyfin-ui/jellyfin-theme.css");
