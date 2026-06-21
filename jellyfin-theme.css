@@ -3235,6 +3235,7 @@ body {
    ========================================================= */
 
 :root {
+    --jf-theme-build: "2026-06-21-fix-statically";
     --jf-home-row-overlap: 0rem;
     --jf-hero-min-height: 340px;
     --jf-hero-height: min(56vh, 590px);
@@ -3273,6 +3274,14 @@ body {
     -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
 }
 
+body .headerTabs.sectionTabs,
+body.withSectionTabs .headerTabs.sectionTabs,
+body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+    top: calc((var(--jf-header-height) - 3rem) / 2) !important;
+    margin-top: 0 !important;
+}
+
 body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs,
 .withSectionTabs .headerTabs.sectionTabs {
     margin-top: 0 !important;
@@ -3303,6 +3312,17 @@ body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs,
     box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28) !important;
 }
 
+.headerRight .headerSearchButton,
+.skinHeader .headerSearchButton,
+body .headerSearchButton {
+    position: fixed !important;
+    top: calc((var(--jf-header-height) - 2.5rem) / 2) !important;
+    left: calc(50vw + 18.8rem) !important;
+    right: auto !important;
+    z-index: 10000 !important;
+    transform: none !important;
+}
+
 .homePage .sections,
 .homePage .homeSectionsContainer,
 .homeSectionsContainer,
@@ -3315,7 +3335,22 @@ body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs,
 
 .homePage .homeSectionsContainer,
 .homePage .sections {
-    padding-top: 1.25rem !important;
+    padding-top: 2rem !important;
+    clear: both !important;
+}
+
+#indexPage:has(.featurediframe) #favoritesTab,
+#indexPage:has(.featurediframe) .homeSectionsContainer,
+#indexPage:has(.featurediframe) .sections {
+    margin-top: 0 !important;
+}
+
+.featurediframe,
+iframe.featurediframe {
+    display: block !important;
+    width: 100% !important;
+    max-height: var(--jf-hero-height) !important;
+    margin-bottom: 0 !important;
 }
 
 .card,

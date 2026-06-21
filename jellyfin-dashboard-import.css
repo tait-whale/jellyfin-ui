@@ -2,8 +2,8 @@
    Paste one @import into Jellyfin:
    Dashboard > General > Custom CSS
 
-   jsDelivr can cache aggressively, so purge the CDN cache when you want
-   Jellyfin clients to refresh without changing this URL.
+   Statically serves the current GitHub main branch with a stylesheet-safe
+   content type and shorter cache window than jsDelivr branch aliases.
 */
 
-@import url("https://cdn.jsdelivr.net/gh/tait-whale/jellyfin-ui@main/jellyfin-theme.css");
+@import url("https://cdn.statically.io/gh/tait-whale/jellyfin-ui/main/jellyfin-theme.css");
