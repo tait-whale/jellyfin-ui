@@ -1,0 +1,534 @@
+@import url("https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/abyss.css");
+@import url("https://cdn.jsdelivr.net/gh/AumGupta/abyss-jellyfin@main/styles/abyss-je.css");
+@import url("https://cdn.jsdelivr.net/gh/intro-skipper/intro-skipper-css@main/skip-button.min.css");
+
+/* =========================================================
+   Jellyfin Home Cinema Theme
+   Keep this file external and import it from Jellyfin's
+   Dashboard > General > Custom CSS field.
+   ========================================================= */
+
+:root {
+    --skip-hide-duration: 8s;
+
+    --jf-bg: #050505;
+    --jf-surface: rgba(18, 18, 20, 0.72);
+    --jf-surface-strong: rgba(24, 24, 27, 0.88);
+    --jf-border: rgba(255, 255, 255, 0.11);
+    --jf-text: #f7f7f8;
+    --jf-muted: rgba(247, 247, 248, 0.66);
+    --jf-accent: #f5f5f7;
+    --jf-accent-rgb: 245, 245, 247;
+    --jf-radius-card: 14px;
+    --jf-radius-pill: 999px;
+    --jf-header-height: 76px;
+    --jf-page-gutter: clamp(1rem, 3vw, 3.5rem);
+    --jf-row-gap: 1.6rem;
+    --jf-hero-min-height: 430px;
+    --jf-hero-height: min(72vh, 760px);
+    --jf-home-row-overlap: clamp(-18rem, -30vh, -8rem);
+
+    /* Abyss variables */
+    --abyss-accent: var(--jf-accent-rgb);
+    --abyss-radius: 22px;
+    --abyss-indicator: 55, 55, 55;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+html,
+body,
+.backgroundContainer,
+.mainAnimatedPages,
+.page,
+.homePage {
+    background: var(--jf-bg) !important;
+}
+
+body {
+    color: var(--jf-text) !important;
+}
+
+.backgroundContainer {
+    opacity: 1 !important;
+}
+
+.page {
+    scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
+}
+
+* {
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.24);
+    border: 3px solid transparent;
+    border-radius: var(--jf-radius-pill);
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* =========================================================
+   Header / Navigation
+   ========================================================= */
+
+.skinHeader {
+    min-height: var(--jf-header-height) !important;
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 5, 0.86),
+        rgba(5, 5, 5, 0.48)
+    ) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: none !important;
+    backdrop-filter: blur(20px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(130%) !important;
+}
+
+.headerTop {
+    min-height: var(--jf-header-height) !important;
+    padding-inline: var(--jf-page-gutter) !important;
+}
+
+.headerLeft,
+.headerRight {
+    align-items: center !important;
+    gap: 0.35rem !important;
+}
+
+.headerButton,
+.headerBackButton,
+.headerHomeButton,
+.headerCastButton,
+.headerSearchButton,
+.headerUserButton,
+.paper-icon-button-light {
+    color: var(--jf-text) !important;
+}
+
+.headerButton:hover,
+.headerBackButton:hover,
+.headerHomeButton:hover,
+.headerCastButton:hover,
+.headerSearchButton:hover,
+.headerUserButton:hover,
+.paper-icon-button-light:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.headerTabs,
+.emby-tabs {
+    align-items: center !important;
+    gap: 0.35rem !important;
+}
+
+.emby-tab-button,
+.headerTabs .emby-button {
+    min-height: 2.45rem !important;
+    padding: 0 1rem !important;
+    border-radius: var(--jf-radius-pill) !important;
+    color: var(--jf-muted) !important;
+    font-weight: 750 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+}
+
+.emby-tab-button-active,
+.emby-tab-button:hover,
+.headerTabs .emby-button:hover {
+    color: var(--jf-text) !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Turn Jellyfin's search icon into a compact search pill. It still opens
+   Jellyfin search; a real always-visible input needs JS or a plugin. */
+.headerSearchButton {
+    width: auto !important;
+    min-width: 8.75rem !important;
+    height: 2.45rem !important;
+    padding: 0 0.9rem !important;
+    justify-content: flex-start !important;
+    border: 1px solid var(--jf-border) !important;
+    border-radius: var(--jf-radius-pill) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.headerSearchButton::after {
+    content: "Search";
+    margin-left: 0.55rem;
+    color: var(--jf-muted);
+    font-size: 0.92rem;
+    font-weight: 650;
+}
+
+.headerSearchButton:hover {
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+}
+
+/* =========================================================
+   Media Bar / Hero
+   ========================================================= */
+
+#mediaBar,
+#media-bar,
+.mediaBar,
+.media-bar,
+.mediaBarContainer,
+.media-bar-container,
+.featuredContentBar,
+.featured-content-bar,
+[class*="MediaBar"],
+[class*="mediaBar"],
+[class*="mediabar"],
+[class*="media-bar"] {
+    min-height: var(--jf-hero-min-height) !important;
+    max-height: var(--jf-hero-height) !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+.backdropContainer::after,
+.mediaBarContainer::after,
+.media-bar-container::after,
+.featuredContentBar::after,
+.featured-content-bar::after,
+[class*="MediaBar"]::after,
+[class*="mediaBar"]::after,
+[class*="mediabar"]::after,
+[class*="media-bar"]::after {
+    opacity: 0.72 !important;
+}
+
+.layout-desktop .homePage .backdropContainer,
+.layout-desktop .homePage .backgroundContainer {
+    mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+}
+
+/* =========================================================
+   Home Layout
+   ========================================================= */
+
+.homePage .sections,
+.homePage .homeSectionsContainer,
+.homeSectionsContainer,
+#homePage .sections,
+#homePage .homeSectionsContainer {
+    position: relative !important;
+    z-index: 50 !important;
+    margin-top: var(--jf-home-row-overlap) !important;
+    padding: 0 var(--jf-page-gutter) 3rem !important;
+}
+
+.homePage .verticalSection:first-of-type,
+.homePage .homeSection:first-of-type {
+    margin-top: var(--jf-home-row-overlap) !important;
+}
+
+.verticalSection,
+.homeSection {
+    margin-bottom: var(--jf-row-gap) !important;
+    padding-top: 0 !important;
+}
+
+.itemsContainer,
+.verticalSection,
+.homeSection {
+    margin-bottom: var(--jf-row-gap) !important;
+}
+
+.itemsContainer,
+.padded-right,
+.emby-scroller {
+    scroll-behavior: smooth !important;
+}
+
+.padded-left,
+.padded-right,
+.itemsContainer,
+.emby-scroller {
+    padding-left: 0 !important;
+}
+
+.homePage .sectionTitleContainer {
+    margin-bottom: 0.65rem !important;
+}
+
+.sectionTitle,
+.emby-scroller-title {
+    margin: 0 0 0.65rem 0.15rem !important;
+    color: var(--jf-text) !important;
+    font-size: clamp(1.12rem, 1.45vw, 1.45rem) !important;
+    font-weight: 850 !important;
+    letter-spacing: 0 !important;
+}
+
+.sectionTitleTextButton {
+    color: inherit !important;
+}
+
+.sectionTitleTextButton:hover {
+    opacity: 0.82 !important;
+}
+
+/* =========================================================
+   Cards / Poster Rows
+   ========================================================= */
+
+.card {
+    transition:
+        transform 170ms ease,
+        filter 170ms ease,
+        opacity 170ms ease !important;
+}
+
+.cardBox,
+.cardContent,
+.cardScalable {
+    background: transparent !important;
+}
+
+.cardBox,
+.cardScalable,
+.cardImageContainer,
+.coveredImage,
+.cardOverlayContainer {
+    border-radius: var(--jf-radius-card) !important;
+    overflow: hidden !important;
+}
+
+.cardImageContainer {
+    position: relative !important;
+}
+
+.cardScalable {
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.42) !important;
+}
+
+.cardImageContainer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.homePage .card:hover,
+.card:hover {
+    z-index: 20 !important;
+    filter: brightness(1.06) saturate(1.04) !important;
+    transform: translateY(-0.28rem) scale(1.035) !important;
+}
+
+.cardText,
+.cardText-secondary {
+    color: var(--jf-text) !important;
+    text-shadow: none !important;
+}
+
+.cardText {
+    font-size: 0.95rem !important;
+    font-weight: 750 !important;
+}
+
+.cardText-secondary {
+    color: var(--jf-muted) !important;
+    opacity: 1 !important;
+}
+
+.cardFooter,
+.cardText-first {
+    padding-top: 0.55rem !important;
+}
+
+.playedIndicator,
+.countIndicator,
+.fullSyncIndicator,
+.mediaSourceIndicator,
+.downloadIndicator {
+    border-radius: var(--jf-radius-pill) !important;
+}
+
+.progressring-spiner,
+.mdl-spinner__layer {
+    border-color: rgba(var(--jf-accent-rgb), 0.9) !important;
+}
+
+/* =========================================================
+   Buttons / Menus / Dialogs
+   ========================================================= */
+
+.emby-button,
+.button-flat,
+.raised,
+.paperListButton,
+.actionSheetMenuItem {
+    border-radius: var(--jf-radius-pill) !important;
+}
+
+.raised,
+.btnPlay,
+.button-submit {
+    background: rgba(var(--jf-accent-rgb), 0.94) !important;
+    color: #050505 !important;
+    font-weight: 800 !important;
+}
+
+.emby-button:hover,
+.button-flat:hover,
+.paperListButton:hover,
+.actionSheetMenuItem:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.dialog,
+.actionSheet,
+.toast,
+.paperList,
+.visualCardBox,
+.formDialogHeader,
+.formDialogFooter {
+    background: var(--jf-surface-strong) !important;
+    border-color: var(--jf-border) !important;
+    color: var(--jf-text) !important;
+    backdrop-filter: blur(18px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(130%) !important;
+}
+
+.dialog,
+.actionSheet,
+.toast,
+.visualCardBox {
+    border-radius: 16px !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.58) !important;
+}
+
+.emby-input,
+.emby-textarea,
+.emby-select-withcolor,
+.selectContainer .emby-select-withcolor {
+    color: var(--jf-text) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--jf-border) !important;
+    border-radius: 12px !important;
+}
+
+.inputLabel,
+.selectLabel,
+.textareaLabel,
+.fieldDescription {
+    color: var(--jf-muted) !important;
+}
+
+/* =========================================================
+   Detail Pages
+   ========================================================= */
+
+.detailPagePrimaryContainer {
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 5, 0.08),
+        rgba(5, 5, 5, 0.82) 74%,
+        var(--jf-bg)
+    ) !important;
+}
+
+.detailPagePrimaryContainer + div .sectionTitle {
+    font-size: clamp(1.2rem, 1.7vw, 1.55rem) !important;
+}
+
+.itemBackdrop {
+    filter: saturate(1.05) brightness(0.82) !important;
+}
+
+/* =========================================================
+   Mobile / Tablet
+   ========================================================= */
+
+@media (max-width: 900px) {
+    :root {
+        --jf-header-height: 64px;
+        --jf-page-gutter: 1rem;
+        --jf-hero-min-height: 360px;
+        --jf-home-row-overlap: clamp(-16rem, -38vh, -7rem);
+    }
+
+    .headerTop {
+        padding-inline: 0.75rem !important;
+    }
+
+    .headerTabs,
+    .emby-tabs {
+        overflow-x: auto !important;
+        padding-bottom: 0.2rem !important;
+    }
+
+    .emby-tab-button,
+    .headerTabs .emby-button {
+        min-height: 2.2rem !important;
+        padding: 0 0.78rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .headerSearchButton {
+        min-width: 2.45rem !important;
+        justify-content: center !important;
+        padding: 0 !important;
+    }
+
+    .headerSearchButton::after {
+        content: "";
+        display: none;
+    }
+
+    .sectionTitle,
+    .emby-scroller-title {
+        font-size: 1.12rem !important;
+    }
+
+    .homePage .card:hover,
+    .card:hover {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 520px) {
+    :root {
+        --jf-hero-min-height: 310px;
+        --jf-home-row-overlap: -7.5rem;
+        --jf-radius-card: 11px;
+    }
+
+    .skinHeader {
+        background: rgba(5, 5, 5, 0.72) !important;
+    }
+
+    .cardText {
+        font-size: 0.86rem !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

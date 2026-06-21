@@ -1,0 +1,9 @@
+/*
+   Paste one @import into Jellyfin:
+   Dashboard > General > Custom CSS
+
+   jsDelivr can cache aggressively, so change the version query when you want
+   Jellyfin clients to refresh immediately.
+*/
+
+@import url("https://cdn.jsdelivr.net/gh/tait-whale/jellyfin-ui@main/jellyfin-theme.css?v=2026-06-21");
