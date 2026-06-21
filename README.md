@@ -29,6 +29,7 @@ If your Jellyfin setup has a JavaScript injector, add this block there. Replace 
 ```js
 window.JF_SEERR_DISCOVERY_CONFIG = {
     seerrBaseUrl: "https://seerr.example.com",
+    showErrors: false,
     rows: [
         { title: "Popular Movies", endpoint: "/discover/movies", mediaType: "movie" },
         { title: "Popular Shows", endpoint: "/discover/tv", mediaType: "tv" },
@@ -44,7 +45,9 @@ window.JF_SEERR_DISCOVERY_CONFIG = {
 })();
 ```
 
-This uses Seerr cookie auth by default. That is the safest browser-side option. If it fails with a CORS or authentication error, put Seerr behind the same reverse proxy/domain as Jellyfin, or use a small server-side proxy/plugin so the Seerr API key stays off the browser.
+This uses browser-side fetch, so it is subject to mixed-content and CORS rules. If it fails, put Seerr behind the same reverse proxy/domain as Jellyfin, or use a small server-side proxy/plugin so the Seerr API key stays off the browser. If your Seerr CORS setup allows credentials, add `useCredentials: true`.
+
+Failed Seerr rows are hidden by default so the home page stays clean. Set `showErrors: true` temporarily when debugging CORS, mixed-content, or login issues.
 
 Recommended layout:
 

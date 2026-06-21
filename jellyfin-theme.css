@@ -3442,3 +3442,178 @@ iframe.featurediframe {
         box-shadow: none !important;
     }
 }
+
+/* =========================================================
+   Tidy Home Pass
+   Keep the home screen compact, readable, and image-friendly.
+   ========================================================= */
+
+:root {
+    --jf-theme-build: "2026-06-21-ui-tidy";
+    --jf-header-height: 92px;
+    --jf-hero-min-height: 0px;
+    --jf-hero-height: clamp(360px, 48vh, 520px);
+    --jf-row-gap: 1.15rem;
+}
+
+.skinHeader,
+.skinHeader.semiTransparent,
+.skinHeader-withBackground {
+    height: var(--jf-header-height) !important;
+    min-height: var(--jf-header-height) !important;
+    background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 5, 0.9),
+        rgba(5, 5, 5, 0.62)
+    ) !important;
+}
+
+.headerTop {
+    height: var(--jf-header-height) !important;
+    min-height: var(--jf-header-height) !important;
+}
+
+.headerTabs,
+.headerTabs.sectionTabs,
+.emby-tabs {
+    top: calc((var(--jf-header-height) - 3rem) / 2) !important;
+}
+
+.headerSearchButton,
+.layout-desktop .headerSearchButton,
+.headerRight .headerSearchButton,
+.skinHeader .headerSearchButton,
+body .headerSearchButton {
+    top: calc((var(--jf-header-height) - 2.5rem) / 2) !important;
+}
+
+#mediaBar,
+#media-bar,
+.mediaBar,
+.media-bar,
+.mediaBarContainer,
+.media-bar-container,
+.featuredContentBar,
+.featured-content-bar,
+.featurediframe,
+iframe.featurediframe,
+[class*="MediaBar"],
+[class*="mediaBar"],
+[class*="mediabar"],
+[class*="media-bar"] {
+    height: var(--jf-hero-height) !important;
+    min-height: 0 !important;
+    max-height: var(--jf-hero-height) !important;
+}
+
+.backdropContainer::after,
+.mediaBarContainer::after,
+.media-bar-container::after,
+.featuredContentBar::after,
+.featured-content-bar::after,
+[class*="MediaBar"]::after,
+[class*="mediaBar"]::after,
+[class*="mediabar"]::after,
+[class*="media-bar"]::after {
+    opacity: 0.42 !important;
+}
+
+.layout-desktop .homePage .backdropContainer,
+.layout-desktop .homePage .backgroundContainer {
+    mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%) !important;
+}
+
+.homePage .sections,
+.homePage .homeSectionsContainer,
+.homeSectionsContainer,
+#homePage .sections,
+#homePage .homeSectionsContainer {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2.5rem !important;
+}
+
+.homePage .verticalSection,
+.homePage .homeSection,
+.homePage .jf-seerr-section {
+    margin-bottom: var(--jf-row-gap) !important;
+}
+
+.homePage .sectionTitle,
+.homePage .emby-scroller-title {
+    margin-bottom: 0.45rem !important;
+    font-size: clamp(1.08rem, 1.25vw, 1.32rem) !important;
+}
+
+.homePage .itemsContainer {
+    min-height: auto !important;
+    padding-top: 0 !important;
+}
+
+.card .blurhash-canvas,
+.cardImageContainer .blurhash-canvas,
+.homePage .blurhash-canvas {
+    display: block !important;
+    opacity: 0.72 !important;
+    visibility: visible !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+.cardImageContainer,
+.cardContent.cardImageContainer,
+.visualCardBox {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.12), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03)),
+        #101012 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.cardImageIcon,
+.defaultCardBackground .cardImageIcon {
+    opacity: 0.58 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.homePage .cardScalable {
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38) !important;
+}
+
+.homePage .itemsContainer > .card {
+    margin-right: clamp(0.65rem, 1vw, 1rem) !important;
+}
+
+.homePage .verticalSection:has([data-type="CollectionFolder"]) .itemsContainer {
+    gap: clamp(0.85rem, 1.2vw, 1.25rem) !important;
+}
+
+.homePage .verticalSection:has([data-type="CollectionFolder"]) .card {
+    width: clamp(11.5rem, 15vw, 17rem) !important;
+}
+
+.homePage .verticalSection:has([data-type="CollectionFolder"]) .cardImageContainer {
+    aspect-ratio: 16 / 9 !important;
+}
+
+.homePage .verticalSection:has([data-type="CollectionFolder"]) .cardText {
+    margin-top: 0.4rem !important;
+}
+
+.jf-seerr-section:empty,
+.jf-seerr-section:not(:has(.jf-seerr-card)):not(:has(.jf-seerr-message)) {
+    display: none !important;
+}
+
+.jf-seerr-message {
+    max-width: 32rem;
+}
+
+@media (max-width: 900px) {
+    :root {
+        --jf-header-height: 72px;
+        --jf-hero-height: clamp(280px, 42vh, 420px);
+    }
+}

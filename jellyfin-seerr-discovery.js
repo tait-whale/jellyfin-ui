@@ -30,6 +30,8 @@
         seerrBaseUrl: "",
         apiKey: "",
         maxItems: 18,
+        showErrors: false,
+        useCredentials: false,
         rows: DEFAULT_ROWS
     };
 
@@ -57,6 +59,8 @@
         config.maxItems = Number(config.maxItems || DEFAULT_CONFIG.maxItems);
         config.seerrBaseUrl = String(config.seerrBaseUrl || "").replace(/\/+$/, "");
         config.apiKey = String(config.apiKey || "");
+        config.showErrors = Boolean(config.showErrors);
+        config.useCredentials = Boolean(config.useCredentials);
 
         return config;
     }
@@ -91,13 +95,17 @@
     async function fetchRow(config, row) {
         const headers = {};
 
+        if (window.location.protocol === "https:" && config.seerrBaseUrl.startsWith("http:")) {
+            throw new Error("Mixed content blocked. Use HTTPS for Seerr or proxy it under the Jellyfin domain.");
+        }
+
         if (config.apiKey) {
             headers["X-Api-Key"] = config.apiKey;
         }
 
         const response = await window.fetch(buildUrl(config, row).toString(), {
             headers,
-            credentials: config.apiKey ? "omit" : "include"
+            credentials: config.useCredentials ? "include" : "same-origin"
         });
 
         if (!response.ok) {
@@ -255,7 +263,12 @@
 
             scroller.replaceChildren(...items.map((item) => createCard(config, row, item)));
         } catch (error) {
-            showMessage(scroller, `Seerr row could not load: ${error.message}`);
+            console.warn("[Jellyfin UI] Seerr discovery row could not load:", error);
+            if (config.showErrors) {
+                showMessage(scroller, `Seerr row could not load: ${error.message}`);
+            } else {
+                section.remove();
+            }
         }
     }
 
