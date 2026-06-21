@@ -1,6 +1,6 @@
 # Jellyfin UI Theme
 
-External Jellyfin CSS theme built around Abyss, Intro Skipper styling, a polished home hero/media bar, tighter poster rows, and a cleaner top navigation/search pill.
+External Jellyfin CSS theme with Abyss, Jellyfin Enhanced, and Intro Skipper styling vendored into one file, plus a polished home hero/media bar, tighter poster rows, and a cleaner top navigation/search pill.
 
 ## Use It In Jellyfin
 
@@ -13,6 +13,8 @@ External Jellyfin CSS theme built around Abyss, Intro Skipper styling, a polishe
 ```
 
 When the theme changes, purge the jsDelivr cache for this URL instead of changing the Jellyfin dashboard import.
+
+The theme file is intentionally bundled. Jellyfin only imports `jellyfin-theme.css`; Abyss and Intro Skipper CSS are copied into that file so they cannot drift or load in a conflicting order.
 
 ## What CSS Can And Cannot Do
 
