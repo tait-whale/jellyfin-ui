@@ -3902,3 +3902,203 @@ iframe.featurediframe,
         transform: none !important;
     }
 }
+
+/* =========================================================
+   Tabs, Hero, And Cards Fix
+   Restores the real Jellyfin tab wrapper, shrinks the media bar,
+   and makes card artwork/fallbacks readable.
+   ========================================================= */
+
+:root {
+    --jf-theme-build: "2026-06-21-tabs-hero-cards";
+    --jf-nav-shell-width: 44rem;
+    --jf-tabs-width: 35.2rem;
+    --jf-search-width: 8.5rem;
+    --jf-hero-height: clamp(260px, 34vh, 380px);
+}
+
+.emby-tabs-slider,
+.headerTabs .emby-tabs-slider {
+    position: static !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.emby-tabs-slider::before,
+.emby-tabs-slider::after,
+.headerTabs::before,
+.headerTabs::after {
+    display: none !important;
+    content: none !important;
+    opacity: 0 !important;
+}
+
+.headerTabs,
+.headerTabs.sectionTabs,
+.emby-tabs,
+body .headerTabs.sectionTabs,
+body.withSectionTabs .headerTabs.sectionTabs,
+body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+    left: calc(50vw - 21.7rem) !important;
+    width: var(--jf-tabs-width) !important;
+    max-width: var(--jf-tabs-width) !important;
+    overflow: hidden !important;
+}
+
+.headerSearchButton,
+.layout-desktop .headerSearchButton,
+.headerRight .headerSearchButton,
+.skinHeader .headerSearchButton,
+body .headerSearchButton {
+    left: calc(50vw + 13.3rem) !important;
+    width: var(--jf-search-width) !important;
+    min-width: var(--jf-search-width) !important;
+}
+
+.headerTabs .emby-tab-button,
+.headerTabs .emby-button,
+.emby-tabs .emby-tab-button,
+.emby-tabs-slider .emby-tab-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    color: var(--jf-muted) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.headerTabs .emby-tab-button-active,
+.emby-tabs-slider .emby-tab-button-active {
+    color: var(--jf-text) !important;
+    background: rgba(255, 255, 255, 0.14) !important;
+}
+
+#mediaBar,
+#media-bar,
+.mediaBar,
+.media-bar,
+.mediaBarContainer,
+.media-bar-container,
+.featuredContentBar,
+.featured-content-bar,
+.featurediframe,
+iframe.featurediframe,
+#indexPage.homePage .featurediframe,
+#indexPage.homePage iframe.featurediframe,
+.homePage iframe.featurediframe,
+[class*="MediaBar"],
+[class*="mediaBar"],
+[class*="mediabar"],
+[class*="media-bar"] {
+    height: var(--jf-hero-height) !important;
+    min-height: var(--jf-hero-height) !important;
+    max-height: var(--jf-hero-height) !important;
+}
+
+.homePage .sections,
+.homePage .homeSectionsContainer,
+.homeSectionsContainer,
+#homePage .sections,
+#homePage .homeSectionsContainer {
+    padding-top: 0.65rem !important;
+}
+
+.cardImageContainer,
+.cardContent.cardImageContainer,
+.visualCardBox {
+    position: relative !important;
+    isolation: isolate !important;
+    background:
+        radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.2), transparent 30%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045)),
+        #17171b !important;
+}
+
+.cardImageContainer .blurhash-canvas,
+.card .blurhash-canvas,
+.homePage .blurhash-canvas {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 0.2 !important;
+    visibility: visible !important;
+    pointer-events: none !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+.cardImageContainer .cardImage,
+.cardImageContainer .coveredImage,
+.cardImageContainer [style*="background-image"],
+.card .cardImage,
+.card .coveredImage {
+    position: relative !important;
+    z-index: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+.cardImageIcon,
+.cardImageContainer .material-icons,
+.cardImageContainer .material-icons-round {
+    position: relative !important;
+    z-index: 2 !important;
+    opacity: 0.72 !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+}
+
+.homePage .cardScalable {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.34) !important;
+}
+
+.homePage .verticalSection:has([data-type="CollectionFolder"]) .card {
+    width: clamp(10rem, 13vw, 15rem) !important;
+}
+
+@media (max-width: 1500px) {
+    :root {
+        --jf-nav-shell-width: 39rem;
+        --jf-tabs-width: 30.8rem;
+        --jf-search-width: 8.2rem;
+    }
+
+    .headerTabs,
+    .headerTabs.sectionTabs,
+    .emby-tabs,
+    body .headerTabs.sectionTabs,
+    body.withSectionTabs .headerTabs.sectionTabs,
+    body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+    body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+        left: calc(50vw - 19.2rem) !important;
+    }
+
+    .headerSearchButton,
+    .layout-desktop .headerSearchButton,
+    .headerRight .headerSearchButton,
+    .skinHeader .headerSearchButton,
+    body .headerSearchButton {
+        left: calc(50vw + 11.4rem) !important;
+    }
+}
