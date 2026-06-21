@@ -3617,3 +3617,288 @@ iframe.featurediframe,
         --jf-hero-height: clamp(280px, 42vh, 420px);
     }
 }
+
+/* =========================================================
+   UI Stabilizer Pass
+   Keep this section last. It replaces the earlier experimental
+   header positioning with one shared nav/search capsule.
+   ========================================================= */
+
+:root {
+    --jf-theme-build: "2026-06-21-nav-integrated";
+    --jf-header-height: 96px;
+    --jf-nav-shell-width: 42rem;
+    --jf-tabs-width: 32.6rem;
+    --jf-search-width: 8.6rem;
+    --jf-nav-height: 3.2rem;
+    --jf-hero-height: clamp(320px, 42vh, 460px);
+    --jf-row-gap: 1rem;
+}
+
+.skinHeader,
+.skinHeader.semiTransparent,
+.skinHeader-withBackground {
+    height: var(--jf-header-height) !important;
+    min-height: var(--jf-header-height) !important;
+}
+
+.skinHeader::after {
+    content: "";
+    position: fixed;
+    top: calc((var(--jf-header-height) - var(--jf-nav-height)) / 2);
+    left: 50%;
+    z-index: 9996;
+    width: var(--jf-nav-shell-width);
+    height: var(--jf-nav-height);
+    pointer-events: none;
+    transform: translateX(-50%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--jf-radius-pill);
+    background: rgba(31, 31, 34, 0.92);
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.32),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+.emby-tabs-slider,
+.headerTabs .emby-tabs-slider,
+.emby-tabs-slider::before,
+.emby-tabs-slider::after,
+.headerTabs::before,
+.headerTabs::after {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+.headerTabs,
+.headerTabs.sectionTabs,
+.emby-tabs,
+body .headerTabs.sectionTabs,
+body.withSectionTabs .headerTabs.sectionTabs,
+body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+    position: fixed !important;
+    top: calc((var(--jf-header-height) - var(--jf-nav-height)) / 2) !important;
+    left: calc(50vw - 20.7rem) !important;
+    z-index: 9998 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: var(--jf-tabs-width) !important;
+    max-width: var(--jf-tabs-width) !important;
+    height: var(--jf-nav-height) !important;
+    min-height: var(--jf-nav-height) !important;
+    margin: 0 !important;
+    padding: 0.3rem !important;
+    transform: none !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: var(--jf-radius-pill) 0 0 var(--jf-radius-pill) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.headerTabs .emby-tab-button,
+.headerTabs .emby-button,
+.emby-tabs .emby-tab-button {
+    flex: 0 0 auto !important;
+    height: 2.55rem !important;
+    min-height: 2.55rem !important;
+    margin: 0 !important;
+    padding: 0 0.9rem !important;
+    border-radius: var(--jf-radius-pill) !important;
+    background: transparent !important;
+}
+
+.headerTabs .emby-tab-button-active,
+.headerTabs .emby-tab-button:hover,
+.headerTabs .emby-button:hover {
+    background: rgba(255, 255, 255, 0.13) !important;
+}
+
+.headerSearchButton,
+.layout-desktop .headerSearchButton,
+.headerRight .headerSearchButton,
+.skinHeader .headerSearchButton,
+body .headerSearchButton {
+    position: fixed !important;
+    top: calc((var(--jf-header-height) - 2.55rem) / 2) !important;
+    left: calc(50vw + 11.95rem) !important;
+    right: auto !important;
+    z-index: 10000 !important;
+    width: var(--jf-search-width) !important;
+    min-width: var(--jf-search-width) !important;
+    height: 2.55rem !important;
+    margin: 0 !important;
+    padding: 0 0.85rem !important;
+    transform: none !important;
+    border: 0 !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0 var(--jf-radius-pill) var(--jf-radius-pill) 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.headerSearchButton:hover,
+.headerSearchButton:focus-visible {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+    margin-top: 0 !important;
+}
+
+#mediaBar,
+#media-bar,
+.mediaBar,
+.media-bar,
+.mediaBarContainer,
+.media-bar-container,
+.featuredContentBar,
+.featured-content-bar,
+.featurediframe,
+iframe.featurediframe,
+[class*="MediaBar"],
+[class*="mediaBar"],
+[class*="mediabar"],
+[class*="media-bar"] {
+    height: var(--jf-hero-height) !important;
+    min-height: 0 !important;
+    max-height: var(--jf-hero-height) !important;
+    margin-bottom: 0 !important;
+    overflow: hidden !important;
+}
+
+.backdropContainer::after,
+.mediaBarContainer::after,
+.media-bar-container::after,
+.featuredContentBar::after,
+.featured-content-bar::after,
+[class*="MediaBar"]::after,
+[class*="mediaBar"]::after,
+[class*="mediabar"]::after,
+[class*="media-bar"]::after {
+    opacity: 0.34 !important;
+}
+
+.layout-desktop .homePage .backdropContainer,
+.layout-desktop .homePage .backgroundContainer {
+    mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 88%, transparent 100%) !important;
+}
+
+.homePage .sections,
+.homePage .homeSectionsContainer,
+.homeSectionsContainer,
+#homePage .sections,
+#homePage .homeSectionsContainer {
+    margin-top: 0 !important;
+    padding-top: 0.85rem !important;
+}
+
+.homePage .verticalSection,
+.homePage .homeSection {
+    margin-bottom: var(--jf-row-gap) !important;
+}
+
+.cardImageContainer,
+.cardContent.cardImageContainer,
+.visualCardBox {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.13), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+        #111114 !important;
+}
+
+.cardImageContainer:has(.cardImage[style*="background-image"]) .blurhash-canvas,
+.cardImageContainer:has(.coveredImage[style*="background-image"]) .blurhash-canvas,
+.card:has(.cardImage[style*="background-image"]) .blurhash-canvas,
+.card:has(.coveredImage[style*="background-image"]) .blurhash-canvas {
+    display: none !important;
+}
+
+.card .blurhash-canvas,
+.cardImageContainer .blurhash-canvas,
+.homePage .blurhash-canvas {
+    display: block !important;
+    opacity: 0.35 !important;
+    visibility: visible !important;
+}
+
+.cardImageContainer .cardImage,
+.cardImageContainer .coveredImage,
+.card .cardImage,
+.card .coveredImage {
+    opacity: 1 !important;
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+.defaultCardBackground1,
+.defaultCardBackground2,
+.defaultCardBackground3,
+.defaultCardBackground4,
+.defaultCardBackground5 {
+    background-color: #17171a !important;
+}
+
+.homePage .card:hover,
+.homePage .card:focus-within {
+    transform: translateY(-0.18rem) scale(1.025) !important;
+}
+
+@media (max-width: 1500px) {
+    :root {
+        --jf-nav-shell-width: 36rem;
+        --jf-tabs-width: 27.4rem;
+        --jf-search-width: 8rem;
+    }
+
+    .headerTabs,
+    .headerTabs.sectionTabs,
+    .emby-tabs,
+    body .headerTabs.sectionTabs,
+    body.withSectionTabs .headerTabs.sectionTabs,
+    body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+    body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs {
+        left: calc(50vw - 17.7rem) !important;
+    }
+
+    .headerSearchButton,
+    .layout-desktop .headerSearchButton,
+    .headerRight .headerSearchButton,
+    .skinHeader .headerSearchButton,
+    body .headerSearchButton {
+        left: calc(50vw + 9.65rem) !important;
+    }
+}
+
+@media (max-width: 1180px) {
+    .skinHeader::after {
+        display: none !important;
+    }
+
+    .headerTabs,
+    .headerTabs.sectionTabs,
+    .emby-tabs,
+    body .headerTabs.sectionTabs,
+    body.withSectionTabs .headerTabs.sectionTabs,
+    body:has(.homePage:not(.hide)) .headerTabs.sectionTabs,
+    body:has(#indexPage.homePage:not(.hide)) .headerTabs.sectionTabs,
+    .headerSearchButton,
+    .layout-desktop .headerSearchButton,
+    .headerRight .headerSearchButton,
+    .skinHeader .headerSearchButton,
+    body .headerSearchButton {
+        position: static !important;
+        width: auto !important;
+        max-width: 100% !important;
+        transform: none !important;
+    }
+}
